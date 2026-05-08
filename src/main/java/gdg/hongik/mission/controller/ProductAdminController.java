@@ -15,7 +15,7 @@ import java.util.List;
 @Tag(name="관리자 API")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("product-admins")
+@RequestMapping("admin/products")
 public class ProductAdminController {
     private final ProductAdminService productAdminService;
 

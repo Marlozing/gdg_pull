@@ -15,14 +15,14 @@ import java.util.*;
 @Tag(name="유저 API")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/product-users")
+@RequestMapping("/user/products")
 public class ProductUserController {
     private final ProductUserService productUserService;
 
     @Operation(summary = "상품 검색", description = "상품을 검색한다")
     @ApiResponse(responseCode = "200", description = "검색 성공")
     @GetMapping
-    public ResponseEntity<Product> getProduct(@RequestBody String productName){
+    public ResponseEntity<Product> getProduct(@PathVariable String productName){
         Product product = productUserService.findbyName(productName);
         return ResponseEntity.ok(product);
     }
