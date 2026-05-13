@@ -1,5 +1,8 @@
 package gdg.hongik.mission.controller;
 
+import gdg.hongik.mission.dto.AdminCreateRequest;
+import gdg.hongik.mission.dto.AdminDeleteProduct;
+import gdg.hongik.mission.dto.AdminPatchResponse;
 import gdg.hongik.mission.entity.Product;
 
 import gdg.hongik.mission.service.ProductAdminService;
@@ -22,26 +25,26 @@ public class ProductAdminController {
     @Operation(summary = "상품 생성", description = "새 상품을 등록한다")
     @ApiResponse(responseCode = "200", description = "생성 성공")
     @PostMapping
-    public ResponseEntity<Void> createProduct(@RequestBody Product product){
-        productAdminService.createProduct(product);
+    public ResponseEntity<Void> createProduct(@RequestBody AdminCreateRequest request){
+        productAdminService.createProduct(request);
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "상품 재고 추가", description = "상품 재고를 추가한다")
     @ApiResponse(responseCode = "200", description = "추가 성공")
     @PatchMapping("/{productId}")
-    public ResponseEntity<Product> patchProductStock(
+    public ResponseEntity<AdminPatchResponse> patchProductStock(
             @PathVariable Long productId,
             @RequestBody Integer productStock){
-        Product product = productAdminService.updateStock(productId, productStock);
-        return ResponseEntity.ok(product);
+        AdminPatchResponse response = productAdminService.updateStock(productId, productStock);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "상품 제거", description = "상품을 제거한다")
     @ApiResponse(responseCode = "200", description = "제거 성공")
     @DeleteMapping
-    public ResponseEntity<List<Product>> deleteProduct(@RequestBody List<Long> productIds){
-        List<Product> products = productAdminService.deleteProduct(productIds);
+    public ResponseEntity<List<AdminDeleteProduct>> deleteProduct(@RequestBody List<Long> productIds){
+        List<AdminDeleteProduct> products = productAdminService.deleteProduct(productIds);
         return ResponseEntity.ok(products);
     }
 }

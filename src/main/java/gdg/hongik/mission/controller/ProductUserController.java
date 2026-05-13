@@ -1,6 +1,10 @@
 package gdg.hongik.mission.controller;
 
+import gdg.hongik.mission.dto.UserBuyRequest;
+import gdg.hongik.mission.dto.UserBuyResponse;
+import gdg.hongik.mission.dto.UserBuyProduct;
 import gdg.hongik.mission.entity.Product;
+
 
 import gdg.hongik.mission.service.ProductUserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,9 +34,9 @@ public class ProductUserController {
     @Operation(summary = "상품 구매", description = "상품들을 구매한다")
     @ApiResponse(responseCode = "200", description = "구매 성공")
     @PatchMapping
-    public ResponseEntity<List<Product>> buyProduct(
-            @RequestBody List<Product> products){
-        List<Product> buyProducts = productUserService.buyProducts(products);
-        return ResponseEntity.ok(buyProducts);
+    public ResponseEntity<UserBuyResponse> buyProduct(
+            @RequestBody List<UserBuyRequest> products){
+        UserBuyResponse response = productUserService.buyProducts(products);
+        return ResponseEntity.ok(response);
     }
 }
