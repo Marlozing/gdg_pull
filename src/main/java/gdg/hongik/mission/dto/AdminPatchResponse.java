@@ -1,5 +1,8 @@
 package gdg.hongik.mission.dto;
 
+import lombok.Getter;
+
+@Getter
 public class AdminPatchResponse {
     private String ProductName;
     private Integer ProductPrice;

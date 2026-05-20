@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -19,6 +20,7 @@ public class Product {
 
     private Integer ProductPrice;
 
+    @Setter
     private Integer ProductStock;
 
     public Product(String ProductName, Integer ProductPrice, Integer ProductStock) {
@@ -27,24 +29,4 @@ public class Product {
         this.ProductStock = ProductStock;
     }
 
-    public void setProductStock(Integer ProductStock){
-        if (ProductStock != null){
-            this.ProductStock = ProductStock;
-        }
-    }
-    /*
-    public void updateInfo(String ProductName, Integer ProductPrice, Integer ProductStock){
-        if (ProductName != null){
-            this.ProductName = ProductName;
-        }
-
-        if (ProductPrice != null){
-            this.ProductPrice = ProductPrice;
-        }
-
-        if (ProductStock != null){
-            this.ProductStock = ProductStock;
-        }
-    }
-    */
 }
